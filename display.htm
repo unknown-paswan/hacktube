@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Video Display</title>
+  <style>
+    /* Add your CSS styles here if needed */
+  </style>
+</head>
+<body>
+  <h1>Live Video Display</h1>
+  <video id="cameraStream" width="640" height="480"></video>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const cameraStream = document.getElementById('cameraStream');
+
+    // Connect to the server using Socket.IO
+    const socket = io();
+
+    // Listen for the 'stream' event from the server
+    socket.on('stream', (image) => {
+      // Update the video stream with the received image data
+      cameraStream.src = image;
+    });
+  </script>
+</body>
+</html>
